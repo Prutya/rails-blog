@@ -6,8 +6,13 @@
 
 /* Base */
 @import 'base/normalize';
+@import 'base/mixins';
 @import 'base/common';
 
 /* Components */
 @import 'components/welcome-box';
 @import 'components/button';
+@import 'components/main-container';
+@import 'components/user-form';
+@import 'components/form-field';
+@import 'components/devise-links/*'

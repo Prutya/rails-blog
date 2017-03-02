@@ -1,0 +1,48 @@
+.user-form {
+  width: 500px;
+  margin: auto;
+  border-radius: 2px;
+
+  background-color: rgb(236, 236, 236);
+
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.25);
+
+  transition: box-shadow 200ms;
+
+  @include container;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    margin: none;
+  }
+
+  &__header {
+    @include container;
+
+    &__title {
+      text-align: center;
+      font-size: 40px;
+      font-weight: 200;
+      margin: 0;
+    }
+  }
+
+  #error_explanation {
+    border-radius: 3px;
+    color: rgb(251, 82, 36);
+
+    @include container;
+
+    h2 {
+      margin: 0;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+  }
+}

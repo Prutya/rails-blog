@@ -16,7 +16,6 @@ gem 'jquery-rails',       '4.2.2'
 gem 'rails_admin',        '1.0.0'
 gem 'uglifier',           '3.0.2'
 gem 'jbuilder',           '2.6.0'
-gem 'turbolinks',         '5.0.1'
 
 group :development, :test do
   gem 'byebug',             platform: :mri
