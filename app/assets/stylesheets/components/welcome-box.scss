@@ -1,0 +1,23 @@
+.welcome-box {
+  padding-top: 13%;
+
+  &__header {
+    text-align: center;
+
+    &__text {
+      font-weight: 200;
+      font-size: 50px;
+      margin-bottom: 15px;
+    }
+  }
+
+  &__body {
+    text-align: center;
+
+    &__text {
+      font-weight: 200;
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+  }
+}

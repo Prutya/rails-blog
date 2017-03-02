@@ -12,8 +12,6 @@ gem 'devise',             '4.2.0'
 gem 'pundit',             '1.1.0'
 gem "rails_admin_pundit", :github => "sudosu/rails_admin_pundit"
 gem 'sass-rails',         '5.0.6'
-gem 'materialize-sass',   '0.98.0'
-gem 'material_icons',     '2.2.1'
 gem 'jquery-rails',       '4.2.2'
 gem 'rails_admin',        '1.0.0'
 gem 'uglifier',           '3.0.2'

@@ -1,2 +1,14 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div class="welcome-box">
+  <div class="welcome-box__header">
+    <h1 class="welcome-box__header__text">Example blog</h1>
+  </div>
+  <div class="welcome-box__body">
+    <p class="welcome-box__body__text">Welcome to the blog!</p>
+    <%= link_to new_user_session_path, class:'button button--teal' do %>
+      Sign in
+    <% end %>
+    <%= link_to new_user_registration_path, class:'button button--green' do %>
+      Sign up
+    <% end %>
+  </div>
+</div>
