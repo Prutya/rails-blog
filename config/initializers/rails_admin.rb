@@ -1,4 +1,6 @@
 RailsAdmin.config do |config|
+  ## Inherit from ApplicationController, not from ActionController::Base
+  config.parent_controller = '::ApplicationController'
 
   ### Popular gems integration
 
