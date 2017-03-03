@@ -1,8 +1,10 @@
 class User < ApplicationRecord
   has_many :assignments, dependent: :destroy
   has_many :posts
+  has_many :comments
 
   has_many :roles, through: :assignments
+  has_many :commented_posts, through: :comments
 
   devise :database_authenticatable,
          :registerable,

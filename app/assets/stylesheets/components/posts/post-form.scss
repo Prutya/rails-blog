@@ -1,0 +1,24 @@
+.post-form {
+  @include container;
+
+  border-radius: 3px;
+
+  background-color: rgb(236, 236, 236);
+
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.25);
+
+  &__header {
+    @include container;
+
+    &__title {
+      text-align: left;
+      font-size: 25px;
+      font-weight: 200;
+      margin: 0;
+    }
+  }
+
+  &__body {
+    @include container;
+  }
+}

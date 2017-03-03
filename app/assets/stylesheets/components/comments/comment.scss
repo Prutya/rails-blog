@@ -1,0 +1,41 @@
+.comment {
+  @include container;
+  @include clearfix;
+
+  margin-bottom: 20px;
+  border-radius: 3px;
+
+  background-color: rgb(242, 242, 242);
+
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.25);
+
+  &__body {
+    @include container;
+
+    &__text {
+      padding: 5px;
+      margin: 0;
+
+      font-size: 15px;
+      font-weight: 200;
+    }
+  }
+
+  &__footer {
+    @include container;
+
+    &__time {
+      display: inline-block;
+      float: left;
+
+      padding: 5px;
+
+      max-width: 50%;
+
+      font-size: 15px;
+      font-weight: 200;
+
+      color: rgb(140, 140, 140);
+    }
+  }
+}

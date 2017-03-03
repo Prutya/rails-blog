@@ -2,19 +2,12 @@
   @include container;
   @include clearfix;
 
-  width: 768px;
-  margin: auto;
   margin-bottom: 20px;
-  border-radius: 2px;
+  border-radius: 3px;
 
   background-color: rgb(242, 242, 242);
 
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.25);
-
-  @media screen and (max-width: 768px) {
-    width: 100%;
-    margin: none;
-  }
 
   &__header {
     @include container;
@@ -22,27 +15,33 @@
 
     display: block;
 
-    background-color: rgb(228, 228, 228);
-
-    transition: background-color 200ms;
-
-    border-radius: 3px;
-
-    &:hover {
-      background-color: rgb(218, 214, 214);
-    }
-
     &__title {
-      display: inline-block;
+      @include container;
+
+      border-radius: 3px;
+
+      display: block;
       float: left;
 
+      width: 100%;
       margin: 0;
 
       text-align: left;
+      text-decoration: none;
       font-size: 20px;
       font-weight: 200;
 
       color: rgb(0, 0, 0);
+
+      &--link {
+        background-color: rgb(228, 228, 228);
+
+        transition: background-color 200ms;
+
+        &:hover {
+          background-color: rgb(218, 214, 214);
+        }
+      }
     }
   }
 
@@ -50,6 +49,7 @@
     @include container;
 
     &__text {
+      padding: 5px;
       margin: 0;
 
       font-size: 15px;
@@ -85,6 +85,7 @@
       display: inline-block;
       float: right;
 
+      margin: 0;
       padding: 5px;
 
       border-radius: 3px;
@@ -92,18 +93,19 @@
       font-weight: 200;
       text-decoration: none;
 
-      cursor: pointer;
-
-      background-color: rgb(228, 228, 228);
       color: rgb(0, 0, 0);
 
-      transition: background-color 200ms;
+      &--link {
+        background-color: rgb(228, 228, 228);
+        cursor: pointer;
+        transition: background-color 200ms;
 
-      &--comments {
         &:hover {
           background-color: rgb(218, 214, 214);
         }
+      }
 
+      &--comments {
         &::before {
           line-height: 100%;
           content: "💬";

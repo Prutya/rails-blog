@@ -1,3 +1,5 @@
+<% provide :page_title, 'New post' %>
+
 <div class="post-form">
   <div class="post-form__header">
     <h2 class="post-form__header__title">Write a post</h2>
@@ -12,7 +14,7 @@
       <%= f.text_area :body, autofocus: true, class: 'form-field__text-area', rows: 5 %>
     </div>
     <div class="form-field">
-      <%= f.submit "Sumbit", class: 'button button--green' %>
+      <%= f.submit "Submit", class: 'button button--green' %>
     </div>
   <% end %>
 </div>

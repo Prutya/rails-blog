@@ -1,4 +1,6 @@
-<div class="post">
+<% provide :page_title, @post.title %>
+
+<section class="post">
   <a class="post__header">
     <h3 class="post__header__title"><%= @post.title %></h3>
   </a>
@@ -6,7 +8,40 @@
     <p class="post__body__text"><%= @post.body %></p>
   </div>
   <div class="post__footer">
-    <span class="post__footer__number post__footer__number--comments">5</span>
+    <span class="post__footer__number post__footer__number--comments">
+      <%= @post.comments.length %>
+    </span>
     <span class="post__footer__time"><%= @post.user.full_name %> (<%= @post.created_at %>)</span>
   </div>
-</div>
+</section>
+
+<section class="comments">
+  <%= form_for(:comment, url: post_comments_url(@post.id), html: { method: :post, class: 'comment-form' }) do |f| %>
+    <div class="comment-form__header">
+      <h3 class="comment-form__header__title">New comment</h3>
+    </div>
+    <div class="comment-form__body">
+      <div class="form-field">
+        <%= f.text_area :body, autofocus: true, class: 'form-field__text-area', rows: 5 %>
+      </div>
+      <div class="form-field">
+        <%= f.submit "Submit", class: 'button button--green' %>
+      </div>
+    </div>
+    <div class="comment-form__footer">
+    </div>
+  <% end %>
+
+  <% @post.comments.each do |comment| %>
+    <div class="comment">
+      <div class="comment__body">
+        <p class="comment__body__text">
+          <%= comment.body %>
+        </p>
+      </div>
+      <div class="comment__footer">
+        <span class="comment__footer__time"><%= comment.user.full_name %> (<%= comment.created_at %>)</span>
+      </div>
+    </div>
+  <% end %>
+</section>

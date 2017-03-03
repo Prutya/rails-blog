@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   def index
     authorize Post.new
-    @posts = Post.joins(:user).order({ created_at: :desc })
+    @posts = Post.includes(:comments).order({ created_at: :desc })
   end
 
   def new
@@ -11,13 +11,16 @@ class PostsController < ApplicationController
   def create
     new_post = Post.new(create_params)
     new_post.user = current_user
+
     authorize new_post
+
     new_post.save!
+
     redirect_to posts_url
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.preload(:comments).find(params[:id])
     authorize @post
   end
 
