@@ -34,6 +34,13 @@
     }
   }
 
+  &__text-area {
+    @extend .form-field__text-input;
+
+    display: block;
+    resize: none;
+  }
+
   .button {
     float: right;
   }

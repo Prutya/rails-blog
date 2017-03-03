@@ -1,0 +1,115 @@
+.post {
+  @include container;
+  @include clearfix;
+
+  width: 768px;
+  margin: auto;
+  margin-bottom: 20px;
+  border-radius: 2px;
+
+  background-color: rgb(242, 242, 242);
+
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.25);
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    margin: none;
+  }
+
+  &__header {
+    @include container;
+    @include clearfix;
+
+    display: block;
+
+    background-color: rgb(228, 228, 228);
+
+    transition: background-color 200ms;
+
+    border-radius: 3px;
+
+    &:hover {
+      background-color: rgb(218, 214, 214);
+    }
+
+    &__title {
+      display: inline-block;
+      float: left;
+
+      margin: 0;
+
+      text-align: left;
+      font-size: 20px;
+      font-weight: 200;
+
+      color: rgb(0, 0, 0);
+    }
+  }
+
+  &__body {
+    @include container;
+
+    &__text {
+      margin: 0;
+
+      font-size: 15px;
+      font-weight: 200;
+
+      &--truncate {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+
+  &__footer {
+    @include container;
+    @include clearfix;
+
+    &__time {
+      display: inline-block;
+      float: left;
+
+      padding: 5px;
+
+      max-width: 50%;
+
+      font-size: 15px;
+      font-weight: 200;
+
+      color: rgb(140, 140, 140);
+    }
+
+    &__number {
+      display: inline-block;
+      float: right;
+
+      padding: 5px;
+
+      border-radius: 3px;
+
+      font-weight: 200;
+      text-decoration: none;
+
+      cursor: pointer;
+
+      background-color: rgb(228, 228, 228);
+      color: rgb(0, 0, 0);
+
+      transition: background-color 200ms;
+
+      &--comments {
+        &:hover {
+          background-color: rgb(218, 214, 214);
+        }
+
+        &::before {
+          line-height: 100%;
+          content: "💬";
+          padding-right: 5px;
+        }
+      }
+    }
+  }
+}
