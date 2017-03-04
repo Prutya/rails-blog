@@ -31,10 +31,10 @@ class PostsController < ApplicationController
 
     load_posts
 
-    respond_to do |format|
-      format.html { redirect_to(posts_url) }
-      format.xml  { head :ok }
-      format.js { render 'posts.js.erb' }
+    respond_to do |f|
+      f.html { redirect_to(posts_url) }
+      f.xml  { head :ok }
+      f.js   { render 'posts.js.erb' }
     end
   end
 
