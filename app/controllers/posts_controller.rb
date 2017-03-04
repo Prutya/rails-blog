@@ -1,18 +1,17 @@
 class PostsController < ApplicationController
+  load_and_authorize_resource
+
   def index
-    # authorize Post.new
-    load_posts
   end
 
   def new
-    # authorize Post.new
   end
 
   def create
-    new_post = Post.new(params_create)
+    new_post = Post.new(create_params)
     new_post.user = current_user
 
-    # authorize new_post
+    authorize! :create, new_post
 
     new_post.save!
 
@@ -20,48 +19,44 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.preload(:comments).find(params[:id])
-    # authorize @post
   end
 
   def edit
-    @post = Post.find(params[:id])
-    # authorize @post
   end
 
   def update
-    post = Post.find(params[:id])
-    # authorize post
-    post.update_attributes(params_update)
-
-    redirect_to post_url(post)
+    if @post.update_attributes(update_params)
+      redirect_to post_url(post)
+    else
+      debugger
+    end
   end
 
   def destroy
-    @post = Post.find(params[:id])
-    # authorize
-    @post.destroy!
+    if @post.destroy
+      @posts = Post.all
 
-    load_posts
-
-    respond_to do |f|
-      f.html { redirect_to(posts_url) }
-      f.xml  { head :ok }
-      f.js   { render 'posts.js.erb' }
+      respond_to do |f|
+        f.html { redirect_to(posts_url) }
+        f.xml  { head :ok }
+        f.js   { render 'posts.js.erb' }
+      end
+    else
+      debugger
     end
   end
 
   protected
 
-  def params_create
-    params.require(:post).permit(:title, :body)
+  def create_params
+    params.require(:post).permit(:title, :body, :post_id)
   end
 
-  def params_update
-    params.require(:post).permit(:title, :body)
+  def update_params
+    params.require(:post).permit(:title, :body, :post_id)
   end
 
   def load_posts
-    @posts = Post.includes(:comments).order({ created_at: :desc })
+
   end
 end

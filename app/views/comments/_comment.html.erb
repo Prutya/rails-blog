@@ -5,8 +5,12 @@
     </p>
   </div>
   <div class="comment__footer">
-    <%= link_to '', edit_post_comment_url(comment.post, comment), class: 'icon icon--pencil icon--link' %>
-    <%= link_to '', post_comment_url(comment.post, comment), method: :delete, remote: true, class: 'icon icon--trash icon--link', data: { confirm: 'Are you sure?' } %>
+    <% if can? :edit, comment %>
+      <%= link_to '', edit_post_comment_url(comment.post, comment), class: 'icon icon--pencil icon--link' %>
+    <% end %>
+    <% if can? :destroy, comment %>
+      <%= link_to '', post_comment_url(comment.post, comment), method: :delete, remote: true, class: 'icon icon--trash icon--link', data: { confirm: 'Are you sure?' } %>
+    <% end %>
     <%= image_tag comment.user.avatar.thumb.url, class: 'comment__footer__image', alt: comment.user.full_name %>
     <span class="comment__footer__time"><%= comment.user.full_name %> (<%= comment.created_at %>)</span>
   </div>

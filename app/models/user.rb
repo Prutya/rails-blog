@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   has_many :roles, through: :assignments
-  has_many :commented_posts, through: :comments
+  has_many :commented_posts, through: :comments, source: :post
 
   mount_uploader :avatar, AvatarUploader
 
@@ -15,6 +15,8 @@ class User < ApplicationRecord
          :trackable,
          :validatable,
          :confirmable
+
+  before_create :set_default_role
 
   def admin?
     role?(:admin)
@@ -28,5 +30,9 @@ class User < ApplicationRecord
 
   def role?(role)
     roles.any? { |r| r.name.underscore.to_sym == role }
+  end
+
+  def set_default_role
+    roles << Role.find_by(name: 'user')
   end
 end

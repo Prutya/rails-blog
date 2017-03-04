@@ -16,8 +16,12 @@
     <% end %>
   </div>
   <div class="post__footer">
-    <%= link_to "", post_url(post), method: :delete, remote: async_delete, class: 'icon icon--trash icon--link', data: { confirm: 'Are you sure?' } %>
-    <%= link_to '', edit_post_url(post), class: 'icon icon--pencil icon--link' %>
+    <% if can? :destroy, post %>
+      <%= link_to '', post_url(post), method: :delete, remote: async_delete, class: 'icon icon--trash icon--link', data: { confirm: 'Are you sure?' } %>
+    <% end %>
+    <% if can? :edit, post %>
+      <%= link_to '', edit_post_url(post), class: 'icon icon--pencil icon--link' %>
+    <% end %>
     <% if has_link %>
       <%= link_to(post_url(post.id), class: 'icon icon--comments icon--link') do %>
         <%= post.comments.count(:id) %>

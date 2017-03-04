@@ -1,59 +1,53 @@
 class CommentsController < ApplicationController
+  load_and_authorize_resource
+
   def create
-    new_comment = Comment.new(params_create)
     post = Post.find(params[:post_id])
+    new_comment = Comment.new(create_params)
+    new_comment.user = current_user
+    new_comment.post = post
 
-    # authorize new_comment
+    authorize! :create, new_comment
 
-    if !post.nil?
-      new_comment.user = current_user
-      post.comments << new_comment
+    if new_comment.save
+      redirect_to(post_url(params[:post_id]))
     else
-      # Warn user
-    end
-
-    redirect_to(post_url(params[:post_id]))
-  end
-
-  def destroy
-    @comment = Comment.find(params[:id])
-
-    # authorize @comment
-
-    @comment.destroy!
-
-    load_comments(params[:post_id])
-
-    respond_to do |f|
-      f.html { redirect_to posts_url(params[:post_id]) }
-      f.xml  { head :ok }
-      f.js   { render 'comments.js.erb' }
+      debugger
     end
   end
 
   def edit
-    @comment = Comment.find(params[:id])
-
-    # authorize @comment
   end
 
   def update
-    comment = Comment.find(params[:id])
+    if @comment.update_attributes(update_params)
+      redirect_to post_url(@comment.post_id)
+    else
+      debugger
+    end
+  end
 
-    # authorize comment
+  def destroy
+    if @comment.destroy
+      load_comments(params[:post_id])
 
-    comment.update_attributes(params_update)
-
-    redirect_to post_url(comment.post_id)
+      respond_to do |f|
+        f.html { redirect_to posts_url(params[:post_id]) }
+        f.xml  { head :ok }
+        f.js   { render 'comments.js.erb' }
+      end
+    else
+      debugger
+    end
   end
 
   protected
 
-  def params_create
+  def create_params
     params.require(:comment).permit(:body)
   end
 
-  def params_update
+  def update_params
     params.require(:comment).permit(:body)
   end
 
