@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
     load_comments(params[:post_id])
 
     respond_to do |f|
-      f.html { redirect_to(posts_url(params[:post_id]) }
+      f.html { redirect_to posts_url(params[:post_id]) }
       f.xml  { head :ok }
       f.js   { render 'comments.js.erb' }
     end
