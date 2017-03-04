@@ -41,6 +41,7 @@
         </p>
       </div>
       <div class="comment__footer">
+        <%= image_tag comment.user.avatar.thumb.url, class: 'comment__footer__image', alt: comment.user.full_name %>
         <span class="comment__footer__time"><%= comment.user.full_name %> (<%= comment.created_at %>)</span>
       </div>
     </div>
