@@ -5,4 +5,4 @@
 
 <%= render partial: 'comments/comment_create_form', locals: { post_id: @post.id } %>
 
-<%= render partial: 'comments/comments', locals: { comments: @post.comments } %>
+<%= render partial: 'comments/comments', locals: { comments: @post.comments.paginate(page: params[:page]) } %>

@@ -8,6 +8,8 @@ class Post < ApplicationRecord
 
   default_scope { order(created_at: :desc) }
 
+  self.per_page = 5
+
   def full_title
     "##{id} #{title}"
   end

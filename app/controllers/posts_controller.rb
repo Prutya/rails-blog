@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource only: [:new, :show, :edit, :update, :destroy]
 
   def index
+    @posts = Post.paginate(page: params[:page])
   end
 
   def new
@@ -13,9 +14,11 @@ class PostsController < ApplicationController
 
     authorize! :create, new_post
 
-    new_post.save!
-
-    redirect_to posts_url
+    if new_post.save!
+      redirect_to posts_url
+    else
+      debugger
+    end
   end
 
   def show
@@ -34,7 +37,7 @@ class PostsController < ApplicationController
 
   def destroy
     if @post.destroy
-      @posts = Post.all
+      @posts = Post.paginate(page: params[:page])
 
       respond_to do |f|
         f.html { redirect_to(posts_url) }
@@ -54,9 +57,5 @@ class PostsController < ApplicationController
 
   def update_params
     params.require(:post).permit(:title, :body, :post_id)
-  end
-
-  def load_posts
-
   end
 end

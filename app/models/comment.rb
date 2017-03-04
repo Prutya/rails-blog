@@ -6,4 +6,6 @@ class Comment < ApplicationRecord
   validates :post, presence: true
 
   default_scope { order(created_at: :desc) }
+
+  self.per_page = 5
 end

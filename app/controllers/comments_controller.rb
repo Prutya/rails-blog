@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource only: [:edit, :update, :destroy]
 
   def create
     post = Post.find(params[:post_id])
@@ -29,7 +29,7 @@ class CommentsController < ApplicationController
 
   def destroy
     if @comment.destroy
-      load_comments(params[:post_id])
+      @comments = Post.find(params[:post_id]).comments.paginate(page: params[:page])
 
       respond_to do |f|
         f.html { redirect_to posts_url(params[:post_id]) }
@@ -49,9 +49,5 @@ class CommentsController < ApplicationController
 
   def update_params
     params.require(:comment).permit(:body)
-  end
-
-  def load_comments(post_id)
-    @comments = Post.find(post_id).comments
   end
 end
