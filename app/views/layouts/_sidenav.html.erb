@@ -1,9 +1,7 @@
 <nav class="sidenav sidenav--hidden">
   <% if user_signed_in? %>
     <div class="sidenav__header">
-      <div class="sidenav__header__image-wrapper">
-        <%= image_tag current_user.avatar.thumb.url, class: 'sidenav__header__image-wrapper__image', alt: current_user.full_name %>
-      </div>
+      <%= image_tag current_user.avatar.thumb.url, class: 'sidenav__header__image', alt: current_user.full_name %>
       <span class="sidenav__header__text"><%= current_user.full_name %></span>
     </div>
   <% end %>
@@ -19,7 +17,12 @@
         <%= link_to 'Sign out', destroy_user_session_url, method: :delete, class: 'sidenav__upper__item__link' %>
       </li>
     <% else %>
-
+      <li class="sidenav__upper__item">
+        <%= link_to 'Blog', root_url, class: 'sidenav__upper__item__link' %>
+      </li>
+      <li class="sidenav__upper__item">
+        <%= link_to 'Sign in', new_user_session_url, class: 'sidenav__upper__item__link' %>
+      </li>
     <% end %>
 </nav>
 

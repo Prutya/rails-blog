@@ -11,9 +11,11 @@
   <body>
     <%= render partial: 'layouts/sidenav' %>
 
-    <main class="main-container">
-      <%= yield %>
-    </main>
+    <div class="wrapper">
+      <main class="main-container">
+        <%= yield %>
+      </main>
+    </div>
 
     <%= javascript_include_tag 'application' %>
   </body>
