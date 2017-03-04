@@ -3,4 +3,10 @@
 
   max-width: 768px;
   margin: auto;
+
+  &__title {
+    font-size: 40px;
+    font-weight: 200;
+    text-align: center;
+  }
 }

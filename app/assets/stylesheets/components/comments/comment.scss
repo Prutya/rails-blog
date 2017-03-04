@@ -11,6 +11,7 @@
 
   &__body {
     @include container;
+    @include clearfix;
 
     &__text {
       padding: 5px;
@@ -24,6 +25,7 @@
 
   &__footer {
     @include container;
+    @include clearfix;
 
     &__image {
       display: inline-block;

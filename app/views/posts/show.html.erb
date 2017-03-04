@@ -1,4 +1,5 @@
-<% provide :page_title, @post.title %>
+<% provide :page_title,   @post.title %>
+<% provide :page_heading, @post.title %>
 
 <%= render partial: 'post', locals: { post: @post, has_link: false, async_delete: false, truncate_text: false } %>
 

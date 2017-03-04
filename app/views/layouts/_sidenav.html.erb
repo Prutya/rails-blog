@@ -7,6 +7,11 @@
   <% end %>
   <ul class="sidenav__upper">
     <% if user_signed_in? %>
+      <% if current_user.admin? %>
+        <li class="sidenav__upper__item">
+          <%= link_to 'Admin dashboard', rails_admin_url, class: 'sidenav__upper__item__link' %>
+        </li>
+      <% end %>
       <li class="sidenav__upper__item">
         <%= link_to 'New post', new_post_url, class: 'sidenav__upper__item__link' %>
       </li>
