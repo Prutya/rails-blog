@@ -1,0 +1,28 @@
+<nav class="sidenav sidenav--hidden">
+  <% if user_signed_in? %>
+    <div class="sidenav__header">
+      <div class="sidenav__header__image-wrapper">
+        <%= image_tag current_user.avatar.thumb.url, class: 'sidenav__header__image-wrapper__image', alt: current_user.full_name %>
+      </div>
+      <span class="sidenav__header__text"><%= current_user.full_name %></span>
+    </div>
+  <% end %>
+  <ul class="sidenav__upper">
+    <% if user_signed_in? %>
+      <li class="sidenav__upper__item">
+        <%= link_to 'New post', new_post_url, class: 'sidenav__upper__item__link' %>
+      </li>
+      <li class="sidenav__upper__item">
+        <%= link_to 'Posts', posts_url, class: 'sidenav__upper__item__link' %>
+      </li>
+      <li class="sidenav__upper__item">
+        <%= link_to 'Sign out', destroy_user_session_url, method: :delete, class: 'sidenav__upper__item__link' %>
+      </li>
+    <% else %>
+
+    <% end %>
+</nav>
+
+<div class="sidenav-trigger">
+  <button class="sidenav-trigger__button"></button>
+</div>

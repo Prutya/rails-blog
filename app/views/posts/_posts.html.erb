@@ -1,5 +1,9 @@
 <div class="posts">
-  <% posts.each do |post| %>
-    <%= render partial: 'post', locals: { post: post, has_link: true, async_delete: true, truncate_text: true } %>
+  <% if posts.any? %>
+    <% posts.each do |post| %>
+      <%= render partial: 'post', locals: { post: post, has_link: true, async_delete: true, truncate_text: true } %>
+    <% end %>
+  <% else %>
+    <span class="posts__empty">No posts yet :(</span>
   <% end %>
 </div>

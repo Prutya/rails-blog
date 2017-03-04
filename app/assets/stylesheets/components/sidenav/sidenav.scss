@@ -1,0 +1,85 @@
+.sidenav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+
+  width: 200px;
+  height: 100%;
+
+  background-color: rgb(236, 236, 236);
+
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.25);
+
+  transition: width 500ms;
+
+  &--hidden {
+    width: 0;
+    overflow: hidden;
+  }
+
+  &__header {
+    @include container;
+    @include clearfix;
+
+    border-bottom: 1px solid rgb(214, 214, 214);
+
+    white-space: nowrap;
+
+    text-align: center;
+
+    &__image-wrapper {
+      width: 100%;
+
+      &__image {
+        height: 50px;
+
+        border-radius: 50%;
+      }
+    }
+
+    &__text {
+      width: 100%;
+
+      margin-left: 10px;
+
+      font-size: 20px;
+      line-height: 50px;
+      text-decoration: none;
+      font-weight: 200;
+
+      color: rgb(0, 0, 0);
+    }
+  }
+
+  &__upper, &__lower {
+    @include clearfix;
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    &__item {
+      &__link, &__label {
+        @include container;
+
+        display: inline-block;
+
+        white-space: nowrap;
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: 200;
+
+        color: rgb(0, 0, 0);
+
+        width: 100%;
+      }
+
+      &__link {
+        &:hover {
+          background-color: rgb(214, 214, 214);
+        }
+      }
+    }
+  }
+}
