@@ -1,0 +1,12 @@
+<div class="comment">
+  <div class="comment__body">
+    <p class="comment__body__text">
+      <%= comment.body %>
+    </p>
+  </div>
+  <div class="comment__footer">
+    <%= link_to "", post_comment_url(comment.post, comment), method: :delete, remote: true, class: 'icon icon--trash icon--link', data: { confirm: 'Are you sure?' } %>
+    <%= image_tag comment.user.avatar.thumb.url, class: 'comment__footer__image', alt: comment.user.full_name %>
+    <span class="comment__footer__time"><%= comment.user.full_name %> (<%= comment.created_at %>)</span>
+  </div>
+</div>

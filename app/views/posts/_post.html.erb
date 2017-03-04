@@ -1,0 +1,30 @@
+<div class="post" data-id="<%= post.id %>">
+  <div class="post__header">
+    <% if has_link %>
+      <%= link_to(post_url(post.id), class: 'post__header__title post__header__title--link') do %>
+        <%= post.title %>
+      <% end %>
+    <% else %>
+      <h3 class="post__header__title"><%= @post.title %></h3>
+    <% end %>
+  </div>
+  <div class="post__body">
+    <p class="post__body__text post__body__text--truncate"><%= post.body %></p>
+  </div>
+  <div class="post__footer">
+    <% if has_link %>
+      <%= link_to(post_url(post.id), class: 'icon icon--comments icon--link') do %>
+        <%= post.comments.count(:id) %>
+      <% end %>
+    <% else %>
+      <span class="icon icon--comments">
+        <%= @post.comments.length %>
+      </span>
+    <% end %>
+    <%= link_to "", post_url(post), method: :delete, remote: async_delete, class: 'icon icon--trash icon--link', data: { confirm: 'Are you sure?' } %>
+    <%= image_tag post.user.avatar.thumb.url, class: 'post__footer__image', alt: post.user.full_name %>
+    <span class="post__footer__time">
+      <%= post.user.full_name %> (<%= post.created_at %>)
+    </span>
+  </div>
+</div>

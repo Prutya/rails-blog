@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :posts do
-    resources :comments
+    resources :comments, only: [:create, :edit, :update, :destroy]
   end
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'

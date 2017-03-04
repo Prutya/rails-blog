@@ -10,6 +10,7 @@
 
   <body>
     <main class="main-container">
+      <%= link_to 'Sign out', destroy_user_session_url, method: :delete %>
       <%= yield %>
     </main>
 

@@ -3,6 +3,8 @@ class CommentsController < ApplicationController
     new_comment = Comment.new(params_create)
     post = Post.find(params[:post_id])
 
+    # authorize new_comment
+
     if !post.nil?
       new_comment.user = current_user
       post.comments << new_comment
@@ -13,10 +15,27 @@ class CommentsController < ApplicationController
     redirect_to(post_url(params[:post_id]))
   end
 
-  def delete
+  def destroy
+    @comment = Comment.find(params[:id])
+
+    # authorize
+
+    @comment.destroy!
+
+    load_comments(params[:post_id])
+
+    respond_to do |format|
+      format.html { redirect_to(posts_url(params[:post_id]) }
+      format.xml  { head :ok }
+      format.js { render 'comments.js.erb' }
+    end
   end
 
   protected
+
+  def load_comments(post_id)
+    @comments = Post.find(post_id).comments
+  end
 
   def params_create
     params.require(:comment).permit(:body)

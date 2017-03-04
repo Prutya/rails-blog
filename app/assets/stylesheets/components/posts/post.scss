@@ -90,38 +90,5 @@
 
       border-radius: 50%;
     }
-
-    &__number {
-      display: inline-block;
-      float: right;
-
-      margin: 0;
-      padding: 5px;
-
-      border-radius: 3px;
-
-      font-weight: 200;
-      text-decoration: none;
-
-      color: rgb(0, 0, 0);
-
-      &--link {
-        background-color: rgb(228, 228, 228);
-        cursor: pointer;
-        transition: background-color 200ms;
-
-        &:hover {
-          background-color: rgb(218, 214, 214);
-        }
-      }
-
-      &--comments {
-        &::before {
-          line-height: 100%;
-          content: "💬";
-          padding-right: 5px;
-        }
-      }
-    }
   }
 }
