@@ -1,6 +1,6 @@
 <% provide :page_title, @post.title %>
 
-<%= render partial: 'post', locals: { post: @post, has_link: false, async_delete: false } %>
+<%= render partial: 'post', locals: { post: @post, has_link: false, async_delete: false, truncate_text: false } %>
 
 <%= form_for(:comment, url: post_comments_url(@post.id), html: { method: :post, class: 'comment-form' }) do |f| %>
   <div class="comment-form__header">
