@@ -14,7 +14,10 @@
       <%= link_to(post_url(post.id), class: 'post__footer__number post__footer__number--comments post__footer__number--link') do %>
         <%= post.comments.count(:id) %>
       <% end %>
-      <span class="post__footer__time"><%= post.user.full_name %> (<%= post.created_at %>)</span>
+      <%= image_tag post.user.avatar.thumb.url, class: 'post__footer__image', alt: post.user.full_name %>
+      <span class="post__footer__time">
+        <%= post.user.full_name %> (<%= post.created_at %>)
+      </span>
     </div>
   </div>
 <% end %>

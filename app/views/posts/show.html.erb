@@ -11,6 +11,7 @@
     <span class="post__footer__number post__footer__number--comments">
       <%= @post.comments.length %>
     </span>
+    <%= image_tag @post.user.avatar.thumb.url, class: 'post__footer__image', alt: @post.user.full_name %>
     <span class="post__footer__time"><%= @post.user.full_name %> (<%= @post.created_at %>)</span>
   </div>
 </section>

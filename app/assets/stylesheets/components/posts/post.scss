@@ -81,6 +81,16 @@
       color: rgb(140, 140, 140);
     }
 
+    &__image {
+      display: inline-block;
+      float:left;
+
+      width: 32px;
+      height: 32px;
+
+      border-radius: 50%;
+    }
+
     &__number {
       display: inline-block;
       float: right;

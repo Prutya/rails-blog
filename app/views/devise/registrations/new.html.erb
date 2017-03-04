@@ -39,6 +39,11 @@
     </div>
 
     <div class="form-field">
+      <%= f.label :avatar, class: 'form-field__label' %>
+      <%= f.file_field :avatar, accept: 'image/jpeg,image/gif,image/png' %>
+    </div>
+
+    <div class="form-field">
       <%= f.submit "Sign up", class: 'button button--green' %>
     </div>
   <% end %>

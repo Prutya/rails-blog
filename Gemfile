@@ -16,6 +16,8 @@ gem 'jquery-rails',       '4.2.2'
 gem 'rails_admin',        '1.0.0'
 gem 'uglifier',           '3.0.2'
 gem 'jbuilder',           '2.6.0'
+gem 'cloudinary',         '1.5.2'
+gem 'carrierwave',        '1.0.0'
 
 group :development, :test do
   gem 'byebug',             platform: :mri
