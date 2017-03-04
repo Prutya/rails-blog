@@ -1,5 +1,6 @@
 .post-form {
   @include container;
+  @include clearfix;
 
   border-radius: 3px;
 
@@ -11,6 +12,8 @@
     @include container;
 
     &__title {
+      @include container;
+      
       text-align: left;
       font-size: 25px;
       font-weight: 200;
@@ -20,5 +23,17 @@
 
   &__body {
     @include container;
+  }
+
+  &__footer {
+    @extend .post__footer;
+
+    &__time {
+      @extend .post__footer__time;
+    }
+
+    &__image {
+      @extend .post__footer__image;
+    }
   }
 }

@@ -2,10 +2,10 @@
   <div class="post__header">
     <% if has_link %>
       <%= link_to(post_url(post.id), class: 'post__header__title post__header__title--link') do %>
-        <%= post.title %>
+        <%= post.full_title %>
       <% end %>
     <% else %>
-      <h3 class="post__header__title"><%= @post.title %></h3>
+      <h3 class="post__header__title"><%= post.full_title %></h3>
     <% end %>
   </div>
   <div class="post__body">
@@ -16,16 +16,17 @@
     <% end %>
   </div>
   <div class="post__footer">
+    <%= link_to "", post_url(post), method: :delete, remote: async_delete, class: 'icon icon--trash icon--link', data: { confirm: 'Are you sure?' } %>
+    <%= link_to '', edit_post_url(post), class: 'icon icon--pencil icon--link' %>
     <% if has_link %>
       <%= link_to(post_url(post.id), class: 'icon icon--comments icon--link') do %>
         <%= post.comments.count(:id) %>
       <% end %>
     <% else %>
       <span class="icon icon--comments">
-        <%= @post.comments.length %>
+        <%= post.comments.length %>
       </span>
     <% end %>
-    <%= link_to "", post_url(post), method: :delete, remote: async_delete, class: 'icon icon--trash icon--link', data: { confirm: 'Are you sure?' } %>
     <%= image_tag post.user.avatar.thumb.url, class: 'post__footer__image', alt: post.user.full_name %>
     <span class="post__footer__time">
       <%= post.user.full_name %> (<%= post.created_at %>)

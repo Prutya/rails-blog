@@ -2,18 +2,6 @@
 
 <%= render partial: 'post', locals: { post: @post, has_link: false, async_delete: false, truncate_text: false } %>
 
-<%= form_for(:comment, url: post_comments_url(@post.id), html: { method: :post, class: 'comment-form' }) do |f| %>
-  <div class="comment-form__header">
-    <h3 class="comment-form__header__title">New comment</h3>
-  </div>
-  <div class="comment-form__body">
-    <div class="form-field">
-      <%= f.text_area :body, autofocus: true, class: 'form-field__text-area', rows: 5 %>
-    </div>
-    <div class="form-field">
-      <%= f.submit "Submit", class: 'button button--green' %>
-    </div>
-  </div>
-<% end %>
+<%= render partial: 'comments/comment_create_form', locals: { post_id: @post.id } %>
 
 <%= render partial: 'comments/comments', locals: { comments: @post.comments } %>

@@ -37,4 +37,11 @@
       content: "❌";
     }
   }
+
+  &--pencil {
+    &::before {
+      line-height: 100%;
+      content: "✏️️";
+    }
+  }
 }

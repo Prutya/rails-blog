@@ -1,20 +1,3 @@
 <% provide :page_title, 'New post' %>
 
-<div class="post-form">
-  <div class="post-form__header">
-    <h2 class="post-form__header__title">Write a post</h2>
-  </div>
-
-  <%= form_for(:post, url: posts_url, html: { method: :post }, class: 'post-form__body') do |f| %>
-    <div class="form-field">
-      <%= f.label :title, class: 'form-field__label' %>
-      <%= f.text_field :title, autofocus: true, class: 'form-field__text-input' %>
-    </div>
-    <div class="form-field">
-      <%= f.text_area :body, autofocus: true, class: 'form-field__text-area', rows: 5 %>
-    </div>
-    <div class="form-field">
-      <%= f.submit "Submit", class: 'button button--green' %>
-    </div>
-  <% end %>
-</div>
+<%= render partial: 'post_create_form' %>

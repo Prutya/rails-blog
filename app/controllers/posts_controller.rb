@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    new_post = Post.new(create_params)
+    new_post = Post.new(params_create)
     new_post.user = current_user
 
     # authorize new_post
@@ -22,6 +22,19 @@ class PostsController < ApplicationController
   def show
     @post = Post.preload(:comments).find(params[:id])
     # authorize @post
+  end
+
+  def edit
+    @post = Post.find(params[:id])
+    # authorize @post
+  end
+
+  def update
+    post = Post.find(params[:id])
+    # authorize post
+    post.update_attributes(params_update)
+
+    redirect_to post_url(post)
   end
 
   def destroy
@@ -40,7 +53,11 @@ class PostsController < ApplicationController
 
   protected
 
-  def create_params
+  def params_create
+    params.require(:post).permit(:title, :body)
+  end
+
+  def params_update
     params.require(:post).permit(:title, :body)
   end
 

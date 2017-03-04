@@ -1,0 +1,24 @@
+<%= form_for(post, url: post_url(post), html: { method: :patch, class: 'post-form' }) do |f| %>
+  <div class="post-form__header">
+    <h2 class="post-form__header__title">Edit post</h2>
+  </div>
+  <div class="post-form__body">
+    <div class="form-field">
+      <%= f.label :title, class: 'form-field__label' %>
+      <%= f.text_field :title, autofocus: true, class: 'form-field__text-input' %>
+    </div>
+    <div class="form-field">
+      <%= f.text_area :body, class: 'form-field__text-area', rows: 5 %>
+    </div>
+    <div class="form-field">
+      <%= f.submit "Submit", class: 'button button--green' %>
+    </div>
+  </div>
+
+  <div class="post-form__footer">
+    <%= image_tag post.user.avatar.thumb.url, class: 'post-form__footer__image', alt: post.user.full_name %>
+    <span class="post-form__footer__time">
+      <%= post.user.full_name %> (<%= post.created_at %>)
+    </span>
+  </div>
+<% end %>

@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
 
-    # authorize
+    # authorize @comment
 
     @comment.destroy!
 
@@ -31,13 +31,33 @@ class CommentsController < ApplicationController
     end
   end
 
-  protected
+  def edit
+    @comment = Comment.find(params[:id])
 
-  def load_comments(post_id)
-    @comments = Post.find(post_id).comments
+    # authorize @comment
   end
+
+  def update
+    comment = Comment.find(params[:id])
+
+    # authorize comment
+
+    comment.update_attributes(params_update)
+
+    redirect_to post_url(comment.post_id)
+  end
+
+  protected
 
   def params_create
     params.require(:comment).permit(:body)
+  end
+
+  def params_update
+    params.require(:comment).permit(:body)
+  end
+
+  def load_comments(post_id)
+    @comments = Post.find(post_id).comments
   end
 end

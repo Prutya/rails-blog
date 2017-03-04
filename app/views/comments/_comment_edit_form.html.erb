@@ -1,0 +1,17 @@
+<%= form_for(comment, url: post_comment_url(comment), html: { method: :patch, class: 'comment-form' }) do |f| %>
+  <div class="comment-form__header">
+    <h3 class="comment-form__header__title">Edit comment</h3>
+  </div>
+  <div class="comment-form__body">
+    <div class="form-field">
+      <%= f.text_area :body, autofocus: true, class: 'form-field__text-area', rows: 5 %>
+    </div>
+    <div class="form-field">
+      <%= f.submit "Submit", class: 'button button--green' %>
+    </div>
+  </div>
+  <div class="comment__footer">
+    <%= image_tag comment.user.avatar.thumb.url, class: 'comment__footer__image', alt: comment.user.full_name %>
+    <span class="comment__footer__time"><%= comment.user.full_name %> (<%= comment.created_at %>)</span>
+  </div>
+<% end %>
