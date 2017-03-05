@@ -3,6 +3,6 @@
 
 <%= render partial: 'post', locals: { post: @post, has_link: false, async_delete: false, truncate_text: false } %>
 
-<%= render partial: 'comments/comment_create_form', locals: { post_id: @post.id, parent: nil } %>
+<%= render partial: 'comments/comment_create_form', locals: { post_id: @post.id, parent: nil, is_reply: false } %>
 
-<%= render partial: 'comments/comments', locals: { comments: @post.comments.paginate(page: params[:page]) } %>
+<%= render partial: 'comments/comments', locals: { comments: @post.comments.where(parent_id: nil).paginate(page: params[:page]) } %>

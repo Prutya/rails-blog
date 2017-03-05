@@ -4,13 +4,13 @@
   </div>
   <div class="comment-form__body">
     <% if parent %>
-      <input type="hidden" value="<%= parent.id %>"/>
+      <input type="hidden" name="comment[parent_id]" value="<%= parent.id %>"/>
     <% end %>
     <div class="form-field">
-      <%= f.text_area :body, autofocus: true, class: 'form-field__text-area', rows: 5 %>
+      <textarea name="comment[body]" id="comment_body" class="form-field__text-area" rows="5"><%= comment.body %></textarea>
     </div>
     <div class="form-field">
-      <%= f.submit "Submit", class: 'button button--green' %>
+      <input type="submit" name="commit" value="Submit" class="button button--green" data-disable-with="Submit"/>
     </div>
   </div>
   <div class="comment__footer">

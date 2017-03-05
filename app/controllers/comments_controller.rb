@@ -6,8 +6,6 @@ class CommentsController < ApplicationController
 
     @comment = Comment.new(create_params)
 
-    #debugger
-
     if (create_params[:parent_id])
       @parent = Comment.find(create_params[:parent_id])
       @comment.parent = @parent
@@ -41,9 +39,10 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:post_id])
+    @post = Post.joins(:comments).find(params[:post_id])
+
     if @comment.destroy
-      @comments = @post.comments.paginate(page: params[:page])
+      @comments = @post.comments
 
       respond_to do |f|
         f.html do
@@ -57,7 +56,7 @@ class CommentsController < ApplicationController
         end
       end
     else
-      @comments = @post.comments.paginate(page: params[:page])
+      @comments = @post.comments
 
       respond_to do |f|
         f.html do

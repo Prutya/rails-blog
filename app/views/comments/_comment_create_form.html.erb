@@ -1,23 +1,27 @@
-<%= form_for(:comment, url: post_comments_url(post_id), html: { method: :post, class: 'comment-form' }) do |f| %>
-  <div class="comment-form__header">
-    <h3 class="comment-form__header__title">
+<div class="comment-form-wrapper comment-form-wrapper--hidden">
+  <form class="comment-form" action="<%= post_comments_url(post_id) %>" accept-charset="UTF-8" method="post">
+    <div class="comment-form__header">
+      <h3 class="comment-form__header__title">
+        <% if parent %>
+          Reply to: <%= parent.user.full_name %> "<%= parent.body[0..25] %>..."
+        <% else %>
+          New comment
+        <% end %>
+      </h3>
+      <button class="comment-form__header__close-button"></button>
+    </div>
+
+    <div class="comment-form__body">
+      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
       <% if parent %>
-        Reply to: <%= parent.user.full_name %> "<%= parent.body[0..25] %>..."
-      <% else %>
-        New comment
+        <input type="hidden" name="comment[parent_id]" value="<%= parent.id %>"/>
       <% end %>
-    </h3>
-    <button class="comment-form__header__collapse-toggle comment-form__header__collapse-toggle--collapsed"></button>
-  </div>
-  <div class="comment-form__body comment-form__body--collapsed">
-    <% if parent %>
-      <input type="hidden" name="comment[parent_id]" value="<%= parent.id %>"/>
-    <% end %>
-    <div class="form-field">
-      <%= f.text_area :body, autofocus: true, class: 'form-field__text-area', rows: 5 %>
+      <div class="form-field">
+        <textarea name="comment[body]" id="comment_body" class="form-field__text-area" rows="5"></textarea>
+      </div>
+      <div class="form-field">
+        <input type="submit" name="commit" value="Submit" class="button button--green" data-disable-with="Submit"/>
+      </div>
     </div>
-    <div class="form-field">
-      <%= f.submit "Submit", class: 'button button--green' %>
-    </div>
-  </div>
-<% end %>
+  </form>
+</div>

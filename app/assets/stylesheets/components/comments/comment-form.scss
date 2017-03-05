@@ -2,13 +2,17 @@
   @include container;
   @include clearfix;
 
-  margin-bottom: 20px;
+  width: 60%;
+  margin-left: 20%;
 
-  border-radius: 3px;
+  border-radius: 5px;
 
-  background-color: rgb(236, 236, 236);
+  background: rgb(230, 230, 230);
 
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.25);
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    margin-left: 0;
+  }
 
   &__header {
     @include container;
@@ -26,46 +30,33 @@
       margin: 0;
     }
 
-    &__collapse-toggle {
-      @include container;
-
+    &__close-button {
       display: inline-block;
-      float: right;
-      width: 40px;
+      float:   right;
+
+      padding: 0;
+      width:  40px;
       height: 40px;
-
       border: none;
-      border-radius: 3px;
 
-      background-color: rgb(228, 228, 228);
+      background-color: inherit;
+      color: rgb(175, 175, 175);
       cursor: pointer;
 
-      line-height: 100%;
-
-      transition: background-color 200ms;
+      font-size: 40px;
 
       &:hover {
-        background-color: rgb(218, 214, 214);
+        color: rgb(125, 125, 125);
       }
 
       &::before {
-        content: "➖"
-      }
-
-      &--collapsed {
-        &::before {
-          content: "➕"
-        }
+        content: "✖";
       }
     }
   }
 
   &__body {
     @include container;
-
-    &--collapsed {
-      display: none;
-    }
   }
 
   &__footer {

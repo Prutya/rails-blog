@@ -6,4 +6,10 @@ module ApplicationHelper
       'Blog'
     end
   end
+
+  def truncate_text(text, length = 25)
+    return text if text.length < length
+
+    "#{text[0..length]}..."
+  end
 end

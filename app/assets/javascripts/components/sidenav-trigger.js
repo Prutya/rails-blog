@@ -3,7 +3,7 @@ $(document).ready(function() {
     $('.sidenav').removeClass('sidenav--hidden');
   });
 
-  $('.wrapper').click(function() {
+  $('.main-container').click(function() {
     $('.sidenav').addClass('sidenav--hidden');
   });
 });

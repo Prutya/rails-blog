@@ -12,12 +12,10 @@
     <%= render partial: 'layouts/flash', locals: { flash: flash } %>
     <%= render partial: 'layouts/sidenav' %>
 
-    <div class="wrapper">
-      <main class="main-container">
-        <h2 class="main-container__title"><%= yield(:page_heading) %></h2>
-        <%= yield %>
-      </main>
-    </div>
+    <main class="main-container">
+      <h2 class="main-container__title"><%= yield(:page_heading) %></h2>
+      <%= yield %>
+    </main>
 
     <%= javascript_include_tag 'application' %>
   </body>

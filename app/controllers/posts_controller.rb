@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  load_and_authorize_resource only: [:new, :show, :edit, :update, :destroy]
+  load_and_authorize_resource only: [:new, :edit, :update, :destroy]
 
   def index
     @posts = Post.paginate(page: params[:page])
@@ -9,21 +9,24 @@ class PostsController < ApplicationController
   end
 
   def create
-    new_post = Post.new(create_params)
-    new_post.user = current_user
+    @post = Post.new(create_params)
+    @post.user = current_user
 
-    authorize! :create, new_post
+    authorize! :create, @post
 
-    if new_post.save
+    if @post.save
       flash[:success] = 'Post created successfully.'
       redirect_to posts_url
     else
-      flash.now[:error] = new_post.errors.full_messages.to_sentence
+      flash.now[:error] = @post.errors.full_messages.to_sentence
       render :new
     end
   end
 
   def show
+    @post = Post.includes(:user, comments: [:user, :children, :parent]).find(params[:id])
+
+    authorize! :show, @post
   end
 
   def edit
@@ -40,13 +43,9 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @success = false
-    @error = false
+    @posts = Post.paginate(page: params[:page])
 
     if @post.destroy
-      @posts = Post.paginate(page: params[:page])
-      @success = true
-
       respond_to do |f|
         f.html do
           flash[:success] = 'Post deleted successfully.'
@@ -59,9 +58,6 @@ class PostsController < ApplicationController
         end
       end
     else
-      @posts = Post.paginate(page: params[:page])
-      @error = true
-
       respond_to do |f|
         f.html do
           flash[:error] = @post.errors.full_messages.to_sentence

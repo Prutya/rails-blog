@@ -1,20 +1,15 @@
 <div class="post" data-id="<%= post.id %>">
   <div class="post__header">
-    <% if has_link %>
-      <%= link_to(post_url(post.id), class: 'post__header__title post__header__title--link') do %>
-        <%= post.full_title %>
-      <% end %>
-    <% else %>
-      <h3 class="post__header__title"><%= post.full_title %></h3>
-    <% end %>
+    <h3 class="post__header__title">
+      <span class="post__header__title__number">#<%= post.id %></span>
+      <%= post.title %>
+    </h3>
   </div>
+
   <div class="post__body">
-    <% if truncate_text %>
-      <p class="post__body__text post__body__text--truncate"><%= post.body %></p>
-    <% else %>
-      <p class="post__body__text"><%= post.body %></p>
-    <% end %>
+    <p class="post__body__text"><%= post.body %></p>
   </div>
+
   <div class="post__footer">
     <% if can? :destroy, post %>
       <%= link_to '', post_url(post), method: :delete, remote: async_delete, class: 'icon icon--trash icon--link', data: { confirm: 'Are you sure?' } %>
@@ -31,6 +26,7 @@
         <%= post.comments.length %>
       </span>
     <% end %>
+    <span class="icon icon--link post__footer__comment-button">Comment</span>
     <%= image_tag post.user.avatar.thumb.url, class: 'post__footer__image', alt: post.user.full_name %>
     <span class="post__footer__time">
       <%= post.user.full_name %> (<%= post.created_at %>)

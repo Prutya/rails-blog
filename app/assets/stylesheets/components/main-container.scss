@@ -1,12 +1,19 @@
 .main-container {
   @include container;
 
-  max-width: 768px;
-  margin: auto;
+  height: 100%;
 
   &__title {
+    width: 60%;
+    margin: 20px 0 20px 20%;
+
     font-size: 40px;
     font-weight: 200;
     text-align: center;
+
+    @media screen and (max-width: 900px) {
+      width: 100%;
+      margin: 20px 0 20px 0;
+    }
   }
 }
