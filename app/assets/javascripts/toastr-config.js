@@ -1,6 +1,8 @@
-toastr.options = {
+$(document).ready(function() {
+  toastr.options = {
     closeButton: true,
     debug: false,
     progressBar: true,
     positionClass: "toast-bottom-right"
-}
+  }
+});

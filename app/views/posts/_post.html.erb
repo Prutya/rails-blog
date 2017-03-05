@@ -17,6 +17,9 @@
     <% if can? :edit, post %>
       <%= link_to '', edit_post_url(post), class: 'icon icon--pencil icon--link' %>
     <% end %>
+    <% if action_name == 'show' %>
+      <span class="icon icon--link post__footer__comment-button">Comment</span>
+    <% end %>
     <% if has_link %>
       <%= link_to(post_url(post.id), class: 'icon icon--comments icon--link') do %>
         <%= post.comments.count(:id) %>
@@ -25,8 +28,7 @@
       <span class="icon icon--comments">
         <%= post.comments.length %>
       </span>
-    <% end %>
-    <span class="icon icon--link post__footer__comment-button">Comment</span>
+    <% end %>    
     <%= image_tag post.user.avatar.thumb.url, class: 'post__footer__image', alt: post.user.full_name %>
     <span class="post__footer__time">
       <%= post.user.full_name %> (<%= post.created_at %>)
