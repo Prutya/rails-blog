@@ -1,0 +1,18 @@
+#toast-container > div {
+    border-radius: 0;
+    -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3)
+}
+
+.toast-warning {
+    background-color: rgb(241, 72, 20);
+}
+
+.toast-success {
+    background-color: rgb(8, 147, 120);
+}
+
+.toast-error {
+    background-color: rgb(241, 72, 20);
+}

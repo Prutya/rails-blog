@@ -14,10 +14,11 @@ class PostsController < ApplicationController
 
     authorize! :create, new_post
 
-    if new_post.save!
+    if new_post.save
+      flash[:success] = 'Post created successfully.'
       redirect_to posts_url
     else
-      debugger
+      flash[:error] = new_post.errors.full_messages.to_sentence
     end
   end
 
@@ -29,9 +30,10 @@ class PostsController < ApplicationController
 
   def update
     if @post.update_attributes(update_params)
-      redirect_to post_url(post)
+      flash[:success] = 'Post updated successfully.'
+      redirect_to post_url(@post)
     else
-      debugger
+      flash[:error] = @post.errors.full_messages.to_sentence
     end
   end
 
@@ -40,12 +42,15 @@ class PostsController < ApplicationController
       @posts = Post.paginate(page: params[:page])
 
       respond_to do |f|
-        f.html { redirect_to(posts_url) }
+        f.html do
+          flash[:success] = 'Post deleted successfully.'
+          redirect_to(posts_url)
+        end
         f.xml  { head :ok }
         f.js   { render 'posts.js.erb' }
       end
     else
-      debugger
+      flash[:error] = @post.errors.full_messages.to_sentence
     end
   end
 

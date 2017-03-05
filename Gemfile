@@ -20,6 +20,7 @@ gem 'jbuilder',           '2.6.0'
 gem 'cloudinary',         '1.5.2'
 gem 'carrierwave',        '1.0.0'
 gem 'will_paginate',      '3.1.5'
+gem 'toastr-rails',       '1.0.3'
 
 group :development, :test do
   gem 'byebug',             platform: :mri

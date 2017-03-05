@@ -2,17 +2,19 @@ class CommentsController < ApplicationController
   load_and_authorize_resource only: [:edit, :update, :destroy]
 
   def create
-    post = Post.find(params[:post_id])
-    new_comment = Comment.new(create_params)
-    new_comment.user = current_user
-    new_comment.post = post
+    @post = Post.find(params[:post_id])
+    @comment = Comment.new(create_params)
+    @comment.user = current_user
+    @comment.post = post
 
-    authorize! :create, new_comment
+    authorize! :create, @comment
 
-    if new_comment.save
+    if @comment.save
+      flash[:success] = 'Comment created successfully.'
       redirect_to(post_url(params[:post_id]))
     else
-      debugger
+      flash[:error] = @comment.errors.full_messages.to_sentence
+      render action: :new
     end
   end
 
@@ -21,9 +23,11 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.update_attributes(update_params)
+      flash[:success] = 'Comment updated successfully.'
       redirect_to post_url(@comment.post_id)
     else
-      debugger
+      flash[:error] = @comment.errors.full_messages.to_sentence
+      render action: :edit
     end
   end
 
@@ -32,12 +36,15 @@ class CommentsController < ApplicationController
       @comments = Post.find(params[:post_id]).comments.paginate(page: params[:page])
 
       respond_to do |f|
-        f.html { redirect_to posts_url(params[:post_id]) }
+        f.html do
+           flash[:success] = 'Comment deleted successfully.'
+           redirect_to posts_url(params[:post_id])
+        end
         f.xml  { head :ok }
         f.js   { render 'comments.js.erb' }
       end
     else
-      debugger
+      flash[:error] = @comment.errors.full_messages.to_sentence
     end
   end
 

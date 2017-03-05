@@ -1,8 +1,10 @@
 /*
+ *= require toastr
  *= require_self
  */
 
 /* Libraries */
+@import "lib/toastr";
 
 /* Base */
 @import 'base/normalize';
@@ -21,3 +23,4 @@
 @import 'components/icons/*';
 @import 'components/sidenav/*';
 @import 'components/pagination/*';
+@import 'components/flash';

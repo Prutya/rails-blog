@@ -1,0 +1,8 @@
+<div class="flash">
+  <% flash.each do |key, value| %>
+    <div class="flash__message">
+      <span class="flash__message__type"><%= key %></span>
+      <p class="flash__message__text"><%= value %></p>
+    </div>
+  <% end %>
+</div>

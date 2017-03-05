@@ -4,7 +4,9 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :commenters, through: :comments, source: :user
 
-  validates :user, presence: true
+  validates :user,  presence: true
+  validates :title, presence: true
+  validates :body,  presence: true
 
   default_scope { order(created_at: :desc) }
 
