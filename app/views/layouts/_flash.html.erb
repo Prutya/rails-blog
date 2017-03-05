@@ -6,5 +6,7 @@
     </div>
   <% end %>
 
-  <%= devise_error_messages! %>
+  <% if devise_controller? %>
+    <%= devise_error_messages! %>
+  <% end %>
 </div>
