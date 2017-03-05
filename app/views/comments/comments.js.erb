@@ -8,4 +8,6 @@ $(document).ready(function() {
   <% if flash[:error] %>
     toastr.error('<%= flash[:error] %>', 'Error');
   <% end %>
+
+  initCommentCollapse();
 });

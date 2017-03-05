@@ -1,5 +1,10 @@
-<div class="comment">
+<div class="comment" <% if parent %><%= "data-parent-id=\"#{parent.id}\"" %><% end %>>
   <div class="comment__body">
+    <% if parent %>
+      <p class="comment__body__text">
+        in reply to <%= parent.user.full_name %>
+      </p>
+    <% end %>
     <p class="comment__body__text">
       <%= comment.body %>
     </p>
@@ -13,5 +18,11 @@
     <% end %>
     <%= image_tag comment.user.avatar.thumb.url, class: 'comment__footer__image', alt: comment.user.full_name %>
     <span class="comment__footer__time"><%= comment.user.full_name %> (<%= comment.created_at %>)</span>
+  </div>
+
+  <%= render partial: 'comments/comment_create_form', locals: { parent: comment, post_id: comment.post.id } %>
+
+  <div class="comment-children">
+    <%= render partial: 'comments/comments', locals: { comments: comment.children, parent: comment } %>
   </div>
 </div>

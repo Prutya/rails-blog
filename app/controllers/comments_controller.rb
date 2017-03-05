@@ -3,7 +3,16 @@ class CommentsController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
+
     @comment = Comment.new(create_params)
+
+    #debugger
+
+    if (create_params[:parent_id])
+      @parent = Comment.find(create_params[:parent_id])
+      @comment.parent = @parent
+    end
+
     @comment.user = current_user
     @comment.post = @post
 
@@ -67,7 +76,7 @@ class CommentsController < ApplicationController
   protected
 
   def create_params
-    params.require(:comment).permit(:body)
+    params.require(:comment).permit(:body, :parent_id)
   end
 
   def update_params

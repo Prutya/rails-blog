@@ -1,9 +1,18 @@
 <%= form_for(:comment, url: post_comments_url(post_id), html: { method: :post, class: 'comment-form' }) do |f| %>
   <div class="comment-form__header">
-    <h3 class="comment-form__header__title">New comment</h3>
+    <h3 class="comment-form__header__title">
+      <% if parent %>
+        Reply to: <%= parent.user.full_name %> "<%= parent.body[0..25] %>..."
+      <% else %>
+        New comment
+      <% end %>
+    </h3>
     <button class="comment-form__header__collapse-toggle comment-form__header__collapse-toggle--collapsed"></button>
   </div>
   <div class="comment-form__body comment-form__body--collapsed">
+    <% if parent %>
+      <input type="hidden" name="comment[parent_id]" value="<%= parent.id %>"/>
+    <% end %>
     <div class="form-field">
       <%= f.text_area :body, autofocus: true, class: 'form-field__text-area', rows: 5 %>
     </div>
