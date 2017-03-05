@@ -17,23 +17,4 @@
       margin: 0;
     }
   }
-
-  #error_explanation {
-    border-radius: 3px;
-    color: rgb(251, 82, 36);
-
-    @include container;
-
-    h2 {
-      margin: 0;
-      margin-bottom: 10px;
-      font-size: 20px;
-    }
-
-    ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-  }
 }

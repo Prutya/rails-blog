@@ -8,6 +8,7 @@ $(document).ready(function() {
         toastr.success(flashMessage, 'Success');
         break;
       case 'error':
+      case 'alert':
         toastr.error(flashMessage, 'Error');
         break;
       default:

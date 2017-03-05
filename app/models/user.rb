@@ -6,6 +6,9 @@ class User < ApplicationRecord
   has_many :roles, through: :assignments
   has_many :commented_posts, through: :comments, source: :post
 
+  validates :first_name, presence: true
+  validates :last_name,  presence: true
+
   mount_uploader :avatar, AvatarUploader
 
   devise :database_authenticatable,
