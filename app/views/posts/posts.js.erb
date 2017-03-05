@@ -1,3 +1,11 @@
 $(document).ready(function() {
   $('.posts').replaceWith('<%=j render partial: 'posts', locals: { posts: @posts } %>');
+
+  <% if flash[:success] %>
+    toastr.success('<%= flash[:success] %>', 'Success');
+  <% end %>
+  
+  <% if flash[:error] %>
+    toastr.erorr('<%= flash[:error] %>', 'Error');
+  <% end %>
 });

@@ -18,7 +18,8 @@ class PostsController < ApplicationController
       flash[:success] = 'Post created successfully.'
       redirect_to posts_url
     else
-      flash[:error] = new_post.errors.full_messages.to_sentence
+      flash.now[:error] = new_post.errors.full_messages.to_sentence
+      render :new
     end
   end
 
@@ -33,13 +34,18 @@ class PostsController < ApplicationController
       flash[:success] = 'Post updated successfully.'
       redirect_to post_url(@post)
     else
-      flash[:error] = @post.errors.full_messages.to_sentence
+      flash.now[:error] = @post.errors.full_messages.to_sentence
+      render :edit
     end
   end
 
   def destroy
+    @success = false
+    @error = false
+
     if @post.destroy
       @posts = Post.paginate(page: params[:page])
+      @success = true
 
       respond_to do |f|
         f.html do
@@ -47,10 +53,27 @@ class PostsController < ApplicationController
           redirect_to(posts_url)
         end
         f.xml  { head :ok }
-        f.js   { render 'posts.js.erb' }
+        f.js do
+          flash.now[:success] = 'Post deleted successfully.'
+          render 'posts.js.erb'
+        end
       end
     else
-      flash[:error] = @post.errors.full_messages.to_sentence
+      @posts = Post.paginate(page: params[:page])
+      @error = true
+
+      respond_to do |f|
+        f.html do
+          flash[:error] = @post.errors.full_messages.to_sentence
+          redirect_to(posts_url)
+        end
+        f.xml  { head :ok }
+        f.js do
+          flash.now[:error] = @post.errors.full_messages.to_sentence
+          render 'posts.js.erb'
+        end
+      end
+
     end
   end
 
